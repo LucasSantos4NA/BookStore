@@ -5,13 +5,14 @@ const userRepository = new UserRepository();
 
 export class AuthService {
     async registerUser(name: string, email: string, password: string) {
+        
         // Verificar se o usuário já existe
         const existingUser = await userRepository.getUserByEmail(email);
         if (existingUser) {
             throw new Error('Email já registrado.');
         }
 
-        // Hash da senha
+        // Criptografa a senha
         const passwordHash = await bcrypt.hash(password, 10);
 
         // Registrar usuário
@@ -29,7 +30,7 @@ export class AuthService {
         // Verificar senha
         const isValidPassword = await bcrypt.compare(password, user.passwordHash);
         if (!isValidPassword) {
-            throw new Error('Senha incorreta.');
+            throw new Error('Email ou senha incorretos.');
         }
 
         return user;
