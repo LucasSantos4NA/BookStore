@@ -1,6 +1,6 @@
 import pool from "../config/database";
 
-// Função para criar a tabela "books"
+// cria books
 const createBooksTable = async () => {
   const client = await pool.connect();
   try {
@@ -24,7 +24,7 @@ const createBooksTable = async () => {
   }
 };
 
-// Função para criar a tabela "customers"
+// criar customers
 const createCustomersTable = async () => {
   const client = await pool.connect();
   try {
@@ -46,7 +46,7 @@ const createCustomersTable = async () => {
   }
 };
 
-// Função para criar a tabela "cart_items"
+//criar cart_items
 const createCartItemsTable = async () => {
   const client = await pool.connect();
   try {
@@ -69,7 +69,7 @@ const createCartItemsTable = async () => {
   }
 };
 
-// Função para criar a tabela "orders"
+// criar orders
 const createOrdersTable = async () => {
   const client = await pool.connect();
   try {
@@ -91,7 +91,7 @@ const createOrdersTable = async () => {
   }
 };
 
-// Função para criar a tabela "order_items"
+// criar order_items
 const createOrderItemsTable = async () => {
   const client = await pool.connect();
   try {
@@ -113,7 +113,7 @@ const createOrderItemsTable = async () => {
   }
 };
 
-// Função para rodar todas as migrações
+// todas as migrations
 const runMigrations = async () => {
   await createBooksTable();
   await createCustomersTable();
