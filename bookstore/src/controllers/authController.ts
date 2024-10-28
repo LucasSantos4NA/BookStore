@@ -3,7 +3,7 @@ import { AuthService } from "../services/authService";
 
 const authService = new AuthService();
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (req: Request, res: Response): Promise<void> => {
   const { name, email, password } = req.body;
   try {
     const user = await authService.registerUser(name, email, password);
@@ -13,7 +13,7 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
   try {
     const user = await authService.loginUser(email, password);
@@ -22,5 +22,3 @@ export const login = async (req: Request, res: Response) => {
     res.status(400).json({ error: 'Erro ao fazer login: ' + (err as Error).message });
   }
 };
-
-
