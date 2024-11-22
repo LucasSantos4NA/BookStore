@@ -6,7 +6,6 @@ const userRepository = new UserRepository();
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
     const users = await userRepository.getAllUsers();
-
     
     res.status(200).json(users);
   } catch (err) {

@@ -22,6 +22,7 @@ export class UserRepository {
 
   async getUserByEmail(email: string): Promise<User | null> {
     const { rows } = await this.pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    console.log(rows)
     return rows[0] || null;
   }
 }
