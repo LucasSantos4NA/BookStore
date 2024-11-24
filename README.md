@@ -33,7 +33,6 @@ Um projeto para gerenciar uma livraria, incluindo funcionalidades de cadastro de
 ### Livros
 - **GET** `/books` - Lista todos os livros
 - **POST** `/books` - Adiciona um novo livro
-- **GET** `/books/:id` - Visualiza um livro específico
 
 ## 🏃‍♂️ Como Rodar o Projeto Localmente
 
