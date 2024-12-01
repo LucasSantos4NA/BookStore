@@ -1,9 +1,20 @@
 
-
-```
 # 📚 BookStore
 
 Um projeto para gerenciar uma livraria, incluindo funcionalidades de cadastro de usuários, login, gerenciamento de livros e pedidos.
+
+## 📑 Índice
+
+- [🚀 Tecnologias Usadas](#-tecnologias-usadas)
+- [🔒 Segurança com bcrypt](#-segurança-com-bcrypt)
+- [🔑 Segurança com JWT](#-segurança-com-jwt)
+- [📖 Endpoints Principais](#-endpoints-principais)
+  - [Usuários](#usuários)
+  - [Livros](#livros)
+- [📂 Estrutura do Projeto](#-estrutura-do-projeto)
+- [🏃‍♂️ Como Rodar o Projeto Localmente](#️-como-rodar-o-projeto-localmente)
+
+---
 
 ## 🚀 Tecnologias Usadas
 
@@ -12,6 +23,9 @@ Um projeto para gerenciar uma livraria, incluindo funcionalidades de cadastro de
 - **Express**
 - **PostgreSQL**
 - **bcrypt** para hashing de senhas
+- **JWT** para autenticação
+
+---
 
 ## 🔒 Segurança com bcrypt
 
@@ -24,8 +38,26 @@ O projeto utiliza bcrypt para proteger as senhas dos usuários. As senhas são h
 
 ### Código Relacionado
 
-- Registro de usuário: `services/userService.js`
-- Login de usuário: `services/authService.js`
+- Registro de usuário: `services/userService.ts`
+- Login de usuário: `services/authService.ts`
+
+---
+
+## 🔑 Segurança com JWT
+
+O JWT (JSON Web Token) é utilizado para autenticar usuários de forma segura e manter sessões ativas sem armazenar informações sensíveis no cliente.
+
+### Fluxo de Uso
+
+- **Login:** Após o login bem-sucedido, um token JWT é gerado usando `jsonwebtoken.sign()` com uma chave secreta e enviado ao cliente.
+- **Validação:** Nas requisições subsequentes, o cliente envia o token no cabeçalho `Authorization`, que é verificado usando `jsonwebtoken.verify()` para autorizar o acesso às rotas protegidas.
+
+### Código Relacionado
+
+- Geração de token: `services/authService.ts`
+- Validação de token: Middleware de autenticação em `middlewares/authMiddleware.ts`
+
+---
 
 ## 📖 Endpoints Principais
 
@@ -41,16 +73,7 @@ O projeto utiliza bcrypt para proteger as senhas dos usuários. As senhas são h
     "password": "securepassword123"
   }
   ```
-```
-/src
-│
-├── controllers/   # Lógica para gerenciar rotas
-├── models/        # Definições de modelos de dados
-├── routes/        # Definição de endpoints
-├── services/      # Lógica de autenticação e negócios
-├── helpers/       # Funções utilitárias (validações)
-└── config/        # Configuração de banco de dados
-```
+
   **Resposta de sucesso:**
   ```json
   {
@@ -77,6 +100,7 @@ O projeto utiliza bcrypt para proteger as senhas dos usuários. As senhas são h
   ```json
   {
     "message": "Login bem-sucedido!",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
     "user": {
       "id": 1,
       "name": "John Doe",
@@ -149,6 +173,24 @@ O projeto utiliza bcrypt para proteger as senhas dos usuários. As senhas são h
   }
   ```
 
+---
+
+## 📂 Estrutura do Projeto
+
+```
+/src
+│
+├── controllers/   # Lógica para gerenciar rotas
+├── models/        # Definições de modelos de dados
+├── routes/        # Definição de endpoints
+├── services/      # Lógica de autenticação e negócios
+├── helpers/       # Funções utilitárias (validações)
+├── config/        # Configuração de banco de dados
+└── middlewares/   # middlewares
+```
+
+---
+
 ## 🏃‍♂️ Como Rodar o Projeto Localmente
 
 1. Clone o repositório:
@@ -161,30 +203,18 @@ O projeto utiliza bcrypt para proteger as senhas dos usuários. As senhas são h
    npm install
    ```
 
-3. Configure o banco de dados PostgreSQL e ajuste o arquivo `.env` com suas credenciais:
-
-   **Exemplo de arquivo .env:**
-   ```
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_USER=seu_usuario
-   DB_PASSWORD=sua_senha
-   DB_NAME=bookstore
-   ```
-
-4. Execute as migrações para configurar as tabelas no banco de dados:
+3. Execute as migrações para configurar as tabelas no banco de dados:
    ```bash
    npm run migrate
    ```
 
-5. Inicie o servidor:
+4. Inicie o servidor:
    ```bash
-   npm run dev
+   nodemon server.ts
    ```
 
-6. "Opcional" para rodar o front:
+5. (Opcional) Para rodar o front, abra a pasta `front` e use o arquivo `index.html`.
 
-   `Basta abrir a pasta front, usando o arquivo index.html`
-   
+---
 
 Sinta-se à vontade para contribuir ou relatar problemas! 📬
