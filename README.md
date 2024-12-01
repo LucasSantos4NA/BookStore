@@ -59,6 +59,12 @@ Um projeto para gerenciar uma livraria, incluindo funcionalidades de cadastro de
    npm run dev
    ```
 
+6. "Opcional" para rodar o front:
+
+   `Basta abrir a pasta front, usando o arquivo index.html`
+   
+   
+
 ---
 
 Sinta-se à vontade para contribuir ou relatar problemas! 📬

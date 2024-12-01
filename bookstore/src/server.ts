@@ -2,16 +2,16 @@ import express from "express";
 import bookRoutes from "./routes/bookRoutes";
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
-import cors from 'cors';
-
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
 
 app.use(
   cors({
-    methods: "GET,OPTIONS,POST,PUT,DELETE",
+    methods: ["GET", "OPTIONS", "POST", "PUT", "DELETE"],
     origin: "*",
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 app.use("/books", bookRoutes);
