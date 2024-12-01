@@ -18,8 +18,8 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 export const login = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
   try {
-    const user = await authService.loginUser(email, password);
-    res.status(200).json(user);
+    const token = await authService.loginUser(email, password);
+    res.status(200).json({ token });
   } catch (err) {
     res
       .status(400)

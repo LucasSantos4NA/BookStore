@@ -1,0 +1,4 @@
+export const CONFIG = {
+  JWT_SECRET:
+    "f9356b0952e5681f9bb4969078d6762f1f3f3eb9e87b80d6544103ad918f074c",
+};

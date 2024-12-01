@@ -1,3 +1,4 @@
+import { generateToken } from "../helpers/jwt";
 import { UserRepository } from "../repositories/userRepository";
 import bcrypt from "bcrypt";
 
@@ -20,7 +21,6 @@ export class AuthService {
         if (!user) {
             throw new Error("Usuário não encontrado.");
         }
-        console.log(user.password_hash);
         const isValidPassword = await bcrypt.compare(
             password,
             user.password_hash,
@@ -29,6 +29,9 @@ export class AuthService {
             throw new Error("Email ou senha incorretos.");
         }
 
-        return user;
+        const { password_hash, ...userWithoutPasswordHash } = user;
+
+        const token = generateToken(userWithoutPasswordHash);
+        return token;
     }
 }

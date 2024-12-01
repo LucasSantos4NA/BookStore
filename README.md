@@ -182,11 +182,9 @@ O projeto utiliza bcrypt para proteger as senhas dos usuários. As senhas são h
    npm run dev
    ```
 
-## 🧪 Testes (Opcional)
+6. "Opcional" para rodar o front:
 
-Se você implementar testes automatizados, pode rodá-los com:
-```bash
-npm run test
-```
+   `Basta abrir a pasta front, usando o arquivo index.html`
+   
 
 Sinta-se à vontade para contribuir ou relatar problemas! 📬
